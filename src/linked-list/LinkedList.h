@@ -2,8 +2,8 @@
 #define LINKEDLIST_H
 
 struct ListNode {
-    ListNode* prev;
-    ListNode* next;
+    struct ListNode* prev;
+    struct ListNode* next;
     int value;
 };
 
@@ -16,7 +16,8 @@ class LinkedList {
     
     private:
     
-    ListNode* head, tail;
+    struct ListNode* head;
+    struct ListNode* tail;
     int length;  
        
 };
