@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "binary_semaphore.h"
 
 using namespace std;
@@ -11,14 +9,14 @@ BinarySemaphore::BinarySemaphore() {
 }
 
 void BinarySemaphore::signal() {
-    pthread_mutex_lock(&mutex_);
+    pthread_mutex_lock(&mutex_); // grad mutex
     
     while (value_ == 0) {
-        pthread_cond_wait(&cv_, &mutex_);
+        pthread_cond_wait(&cv_, &mutex_); // if bs is 0, threads wait on cv
     } 
 
-    value_ = 0;
-    pthread_mutex_unlock(&mutex_);
+    value_ = 0; // if thread is here, bs state was 1 but must now be set to 0
+    pthread_mutex_unlock(&mutex_); // release mutex
 }
 
 void BinarySemaphore::wait() {
@@ -29,9 +27,4 @@ void BinarySemaphore::wait() {
     value_ = 1; // reset semaphore state
 
     pthread_mutex_unlock(&mutex_); // release the mutex
-}
-
-int main() {
-    BinarySemaphore *bs = new BinarySemaphore();
-    return 0;
 }
