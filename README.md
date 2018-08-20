@@ -1,3 +1,7 @@
-# data-structures
+# C++ Data Structures
 
-A repository for lightweight implementations of various data structures in C++11 
+A repository for lightweight implementations of various data structures in C++11
+
+## Compilation
+
+Compile using GNU make 
