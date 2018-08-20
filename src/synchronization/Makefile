@@ -1,7 +1,7 @@
 PROG=sync
 CC=g++
 RM=rm -f
-CPPFLAGS=-c -g -Wall
+CPPFLAGS=-std=c++11 -c -g -Wall
 
 SRCS=binary_semaphore.cc readers_writers.cc
 OBJS=$(subst .cc,.o,$(SRCS))

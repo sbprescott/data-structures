@@ -1,3 +1,3 @@
 # data-structures
 
-A repository for lightweight implementations of various data structures in multiple languages (C++, Java, and Python).  
+A repository for lightweight implementations of various data structures in C++11 
