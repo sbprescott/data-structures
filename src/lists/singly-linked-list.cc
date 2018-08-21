@@ -25,6 +25,8 @@ void LinkedList::push_back(int val) {
     if (head == nullptr) {
         head = node;
         head->next = nullptr;
+    } else if (head != nullptr && head->next == nullptr) {
+        head->next = node;
     }
 
 
@@ -34,8 +36,10 @@ void LinkedList::push_back(int val) {
 int main() {
     LinkedList* list = new LinkedList();
     list->push_back(1);
+    list->push_back(3);
     Iterator itr = list->begin();
-    cout << list->begin().current->value << endl;
+    cout << itr.current->value << endl;
+    cout << (itr.current + 2)->value << endl;
     return 0;
 }
 
