@@ -9,7 +9,7 @@ BinarySemaphore::BinarySemaphore() {
 }
 
 void BinarySemaphore::signal() {
-    pthread_mutex_lock(&mutex_); // grad mutex
+    pthread_mutex_lock(&mutex_); // grab mutex
     
     while (value_ == 0) {
         pthread_cond_wait(&cv_, &mutex_); // if bs is 0, threads wait on cv

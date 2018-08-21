@@ -1,16 +1,21 @@
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef SINGLYLINKEDLIST_H
+#define SINGLYLINKEDLIST_H
 
 struct ListNode {
     struct ListNode* next;
     int value;
 };
 
+struct Iterator {
+    struct ListNode* current;
+};
+
 class LinkedList {
     public:
     LinkedList();
-    void append(int val);
+    void push_back(int val);
     int size();
+    Iterator begin();
     
     private:
     struct ListNode* head;
