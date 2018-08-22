@@ -15,6 +15,7 @@ class LinkedList {
     LinkedList();
     void push_back(int val);
     int size();
+    int get(int index);
     Iterator begin();
     
     private:
