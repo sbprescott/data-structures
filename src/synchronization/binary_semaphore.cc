@@ -8,7 +8,7 @@ BinarySemaphore::BinarySemaphore() {
     value_ = 1; // initialize bs to 1
 }
 
-void BinarySemaphore::signal() {
+void BinarySemaphore::wait() {
     pthread_mutex_lock(&mutex_); // grab mutex
     
     while (value_ == 0) {
@@ -19,7 +19,7 @@ void BinarySemaphore::signal() {
     pthread_mutex_unlock(&mutex_); // release mutex
 }
 
-void BinarySemaphore::wait() {
+void BinarySemaphore::signal() {
     pthread_mutex_lock(&mutex_); // grab the mutex
 
     pthread_cond_signal(&cv_); // if threads are waiting on cv_, releases one thread
