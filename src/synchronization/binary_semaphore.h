@@ -1,18 +1,29 @@
-#ifndef DATASTRUCTURES_SYNCHRONIZATION_BINARYSEMAPHORE_H
-#define DATASTRUCTURES_SYNCHRONIZATION_BINARYSEMAPHORE_H
+// binary-semaphore.h
+// -------------------------------------------------------------------------
+// A C++ implementation of a binary semaphore using standard library 
+// thread support mechanisms (mutex, condition_variable)
+//
+// Source: https://stackoverflow.com/a/4793662
+//
 
-#include <pthread.h>
+
+#ifndef BINARYSEMAPHORE_H
+#define BINARYSEMAPHORE_H 
+
+#include <mutex>
+#include <condition_variable> 
 
 class BinarySemaphore {
     public:
-    BinarySemaphore();
-    void wait();
-    void signal();
+        BinarySemaphore(int value) : value_(value), cv_(), mutex_() {}
+        ~BinarySemaphore() {}
+        void wait();
+        void signal();
 
     private:
-    pthread_mutex_t mutex_;
-    pthread_cond_t cv_;
-    int value_; // semaphore state (0 or 1)
+        std::condition_variable cv_;
+        std::mutex mutex_;
+        int value_; // semaphore state (0 or 1)
 };
 
 #endif

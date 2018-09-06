@@ -1,30 +1,32 @@
+// binary-semaphore.cc
+// -------------------------------------------------------------------------
+// A C++ implementation of a binary semaphore using standard library 
+// thread support mechanisms (mutex, condition_variable)
+//
+// Source: https://stackoverflow.com/a/4793662
+//
+
+
 #include "binary_semaphore.h"
 
-using namespace std;
-
-BinarySemaphore::BinarySemaphore() {
-    pthread_mutex_init(&mutex_, NULL);
-    pthread_cond_init(&cv_, NULL);
-    value_ = 1; // initialize bs to 1
-}
-
 void BinarySemaphore::wait() {
-    pthread_mutex_lock(&mutex_); // grab mutex
+    std::unique_lock<std::mutex> lock(mutex_);// grab mutex
     
     while (value_ == 0) {
-        pthread_cond_wait(&cv_, &mutex_); // if bs is 0, threads wait on cv
+        cv_.wait(lock); // if bs is 0, threads wait on cv
     } 
 
     value_ = 0; // if thread is here, bs state was 1 but must now be set to 0
-    pthread_mutex_unlock(&mutex_); // release mutex
+    
+    // mutex is auto-released when lock goes out of scope here
 }
 
 void BinarySemaphore::signal() {
-    pthread_mutex_lock(&mutex_); // grab the mutex
+    std::unique_lock<std::mutex> lock(mutex_);  // grab the mutex
 
-    pthread_cond_signal(&cv_); // if threads are waiting on cv_, releases one thread
+    cv_.notify_one(); // if threads are waiting on cv_, releases one thread
 
     value_ = 1; // reset semaphore state
-
-    pthread_mutex_unlock(&mutex_); // release the mutex
+    
+    // mutex is auto-released when lock goes out of scope here
 }
