@@ -15,7 +15,7 @@
 
 class BinarySemaphore {
     public:
-        BinarySemaphore(int value) : value_(value), cv_(), mutex_() {}
+        BinarySemaphore(int value) : cv_(), mutex_(), value_(value) {}
         ~BinarySemaphore() {}
         void wait();
         void signal();
