@@ -1,4 +1,14 @@
-// Note: g++ requires -pthread linking option in order for std::thread to work
+// vector-addition.cc
+// -----------------------------------------------------------
+// 
+// Multi-threaded vector addition using barrier thread synchronization
+// primitive.  Reads input from stdin, one number per line.  Input size
+// must be a power of two.
+// 
+// @author: Sam Prescott
+//
+// Note: g++ requires -pthread linking option in order for std::thread 
+// to work properly
 
 #include <thread>
 #include <vector>
