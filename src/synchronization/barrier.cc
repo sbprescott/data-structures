@@ -17,6 +17,8 @@ void Barrier::wait() {
         throttle_.signal();
         return;
     } else {
+        // offset by (size_ - 1) so that parent thread does not
+        // become deadlocked
         for (int i = 0; i < (size_ - 1); i++) {
             waitq_.signal();
             throttle_.wait();
