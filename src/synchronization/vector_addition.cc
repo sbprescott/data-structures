@@ -55,13 +55,12 @@ int main() {
     std::vector<int> numvec;
  
     // read N numbers from stdin
-    int n = 0; // always initialize with declaration
+    int n = 0; 
     for (std::string line; getline(std::cin, line);) {
         if (std::cin.eof() || line.length() == 0) break;
         else {
             n++;
             numvec.push_back(stoi(line));
-            std::cout << numvec.back() << std::endl;
         }
     }
 
@@ -71,7 +70,6 @@ int main() {
     Barrier bar(num_threads); // barrier must be shared amongst threads, pass by reference
     std::vector<std::thread> thread_vec;
 
-    std::cout << "starting  " << num_threads << " threads" << std::endl;
     for (int i = 0; i < num_threads; i++) {
         struct t_data data;
         data.max = std::numeric_limits<int>::lowest();
