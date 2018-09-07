@@ -11,8 +11,6 @@
 
 #include "hash-table.h"
 
-hashTable::~hashTable() {}
-
 void hashTable::insert(const std::string & s) {
     std::list<std::string> & inlist = table_[hash(s)];
     // search for string

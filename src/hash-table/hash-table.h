@@ -18,7 +18,7 @@ class hashTable {
         hashTable(unsigned table_size): table_(table_size),
             size_(0),
             table_size_(table_size) {}
-        ~hashTable();
+        ~hashTable() {}
         void insert(const std::string &s);
         bool search(const std::string &s);
         int size() const;
