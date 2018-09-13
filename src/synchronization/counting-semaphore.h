@@ -1,4 +1,4 @@
-// event.h
+// counting-semaphore.h
 // ------------------------------------------------
 //
 // C++ implementation of counting semaphore using custom
