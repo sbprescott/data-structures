@@ -1,4 +1,4 @@
-// counting-semaphore.cc
+// counting_semaphore.cc
 // ------------------------------------------------
 //
 // C++ implementation of counting semaphore using custom

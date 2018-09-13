@@ -1,4 +1,4 @@
-// counting-semaphore.h
+// counting_semaphore.h
 // ------------------------------------------------
 //
 // C++ implementation of counting semaphore using custom
