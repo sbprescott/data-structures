@@ -30,6 +30,14 @@ Vector::Vector(const Vector& a)
         elem_[i] = a.elem_[i];
 }
 
+Vector::Vector(Vector&& a)
+    :elem_{a.elem_},
+    size_{a.size_}
+{
+    a.elem_ = nullptr;
+    a.size_ = 0;
+}
+
 Vector& Vector::operator=(const Vector& a)
 {
     int* p = new int[a.size_];
@@ -38,6 +46,15 @@ Vector& Vector::operator=(const Vector& a)
     delete[] elem_;
     elem_ = p;
     size_ = a.size_;
+    return *this;
+}
+
+Vector& Vector::operator=(Vector&& a)
+{
+    elem_ = a.elem_;
+    size_ = a.size_;
+    a.elem_ = nullptr;
+    a.size_ = 0;
     return *this;
 }
 

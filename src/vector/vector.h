@@ -11,7 +11,10 @@ class Vector {
         ~Vector();                                  // destructor
         
         Vector(const Vector& a);                    // copy constructor
-        Vector& operator=(const Vector &a);         // copy assignment
+        Vector& operator=(const Vector& a);         // copy assignment
+
+        Vector(Vector&& a);                         // move constructor
+        Vector& operator=(Vector&& a);              // move assignment
 
         int& operator[](int i);
         int& operator[](int i) const;
