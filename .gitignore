@@ -1,6 +1,9 @@
 # vim swap files
 *.swp
 
+# vscode
+*.vscode
+
 # Prerequisites
 *.d
 

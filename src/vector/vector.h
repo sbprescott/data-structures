@@ -5,11 +5,16 @@
 
 class Vector {
     public:
+        Vector();                                   // default constructor
         Vector(int s);
-        ~Vector();
-        Vector(std::initializer_list<int> lst);
+        Vector(std::initializer_list<int> lst);     // initializer list constructor                      
+        ~Vector();                                  // destructor
+        
+        Vector(const Vector& a);                    // copy constructor
+        Vector& operator=(const Vector &a);         // copy assignment
 
         int& operator[](int i);
+        int& operator[](int i) const;
         int size() const;
 
 
@@ -18,5 +23,8 @@ class Vector {
         int size_;
 
 };
+
+bool operator==( const Vector& lhs, const Vector& rhs );
+bool operator!=( const Vector& lhs, const Vector& rhs );
 
 #endif
