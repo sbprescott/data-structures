@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <iostream>
+#include <vector>
 #include "vector.h"
 
 Vector::Vector()
@@ -9,10 +11,17 @@ Vector::Vector()
 }
 
 Vector::Vector(int s)
-    :elem_{new int[s]},
-    size_{s},
-    capacity_{s}
 {
+    if (s < 0)
+    {
+        throw std::length_error{"Vector size must be positive."};
+        return;
+    }
+
+    size_ = s;
+    capacity_ = s;
+    elem_ = new int[s];
+
     for (int i = 0; i != s; i++)
     {
         elem_[i] = 0;
@@ -84,6 +93,7 @@ void Vector::push_back(int i)
 
 void Vector::resize(int s)
 {
+    // TODO: check negative resize request
     int* temp = new int[s];
     for (int i = 0; i != size_; i++)
     {

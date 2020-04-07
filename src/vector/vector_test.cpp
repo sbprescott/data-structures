@@ -9,6 +9,7 @@ TEST_CASE( "Vector default constructor")
 {
     Vector v;
     REQUIRE(v.size() == 0);
+    REQUIRE(v.capacity() == 0);
 }
 
 TEST_CASE("Vector constructor with size")
@@ -18,6 +19,24 @@ TEST_CASE("Vector constructor with size")
     v[1] = 2;
     REQUIRE((v[0] == 1 && v[1] == 2));
     REQUIRE(v.size() == 2);
+    REQUIRE(v.capacity() == 2);
+}
+
+TEST_CASE("Negative size")
+{
+    try
+    {
+        REQUIRE_THROWS_AS(Vector(-1), std::length_error);
+    }
+    catch (std::length_error)
+    {
+        std::cout << "length_error\n";
+    }
+    catch (std::bad_alloc)
+    {
+        std::cout << "bad_alloc\n";
+    }
+      
 }
 
 TEST_CASE("Vector initializer list constructor")
