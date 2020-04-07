@@ -6,7 +6,7 @@
 class Vector {
     public:
         Vector();                                   // default constructor
-        Vector(int s);
+        Vector(int s);                              // constructor with integer size
         Vector(std::initializer_list<int> lst);     // initializer list constructor                      
         ~Vector();                                  // destructor
         
@@ -16,6 +16,10 @@ class Vector {
         Vector(Vector&& a);                         // move constructor
         Vector& operator=(Vector&& a);              // move assignment
 
+        void push_back(int i);
+        void resize(int s);
+        int capacity();
+
         int& operator[](int i);
         int& operator[](int i) const;
         int size() const;
@@ -24,6 +28,7 @@ class Vector {
     private:
         int* elem_;
         int size_;
+        int capacity_;
 
 };
 

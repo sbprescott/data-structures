@@ -1,19 +1,28 @@
-#include<algorithm>
+#include <algorithm>
 #include "vector.h"
 
 Vector::Vector()
-    :elem_{new int[0]}, size_{0}
+    :elem_{new int[0]},
+    size_{0},
+    capacity_{0}
 {
 }
 
 Vector::Vector(int s)
-    :elem_{new int[s]}, size_{s}
+    :elem_{new int[s]},
+    size_{s},
+    capacity_{s}
 {
-    for (int i = 0; i != s; i++) elem_[i] = 0;
+    for (int i = 0; i != s; i++)
+    {
+        elem_[i] = 0;
+    }
 }
 
 Vector::Vector(std::initializer_list<int> lst)
-    :elem_{new int[lst.size()]}, size_{static_cast<int>(lst.size())}
+    :elem_{new int[lst.size()]},
+    size_{static_cast<int>(lst.size())},
+    capacity_{static_cast<int>(lst.size())}
 {
     std::copy(lst.begin(), lst.end(), elem_);
 }
@@ -27,7 +36,9 @@ Vector::Vector(const Vector& a)
     size_{a.size_}
 {
     for (int i = 0; i != size_; i++)
+    {
         elem_[i] = a.elem_[i];
+    }
 }
 
 Vector::Vector(Vector&& a)
@@ -42,7 +53,9 @@ Vector& Vector::operator=(const Vector& a)
 {
     int* p = new int[a.size_];
     for (int i = 0; i != a.size_; i++)
+    {
         p[i] = a.elem_[i];
+    }
     delete[] elem_;
     elem_ = p;
     size_ = a.size_;
@@ -56,6 +69,46 @@ Vector& Vector::operator=(Vector&& a)
     a.elem_ = nullptr;
     a.size_ = 0;
     return *this;
+}
+
+void Vector::push_back(int i)
+{
+    if (size_ == capacity_)
+    {
+        resize(std::max(2.0, capacity_ * 1.5));
+    }
+
+    size_++;
+    elem_[size_ - 1] = i;
+}
+
+void Vector::resize(int s)
+{
+    int* temp = new int[s];
+    for (int i = 0; i != size_; i++)
+    {
+        temp[i] = elem_[i];
+    }
+
+    delete[] elem_;
+    elem_ = temp;
+    // why does this not work?
+    // elem_ = temp;
+    // delete[] temp;
+
+    capacity_ = s;
+    // What happens when resize requests capacity smaller than size?
+    // From cppreference.com: If the current size_ is greater than s, 
+    // the container is reduced to its first s elements. 
+    if (s < size_)
+    {
+        size_ = s;
+    }
+}
+
+int Vector::capacity()
+{
+    return capacity_;
 }
 
 int& Vector::operator[](int i)
@@ -79,7 +132,9 @@ bool operator==( const Vector& lhs, const Vector& rhs )
 
     if (lhs.size() == rhs.size()) {
         for (int i = 0; i != lhs.size(); i++)
+        {
             if (lhs[i] != rhs[i]) break;
+        }
 
         // if here, all elements in lhs & rhs are equal
         ret = true;
