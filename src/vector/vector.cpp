@@ -107,7 +107,7 @@ void Vector::resize(int s)
     // delete[] temp;
 
     capacity_ = s;
-    // What happens when resize requests capacity smaller than size?
+
     // From cppreference.com: If the current size_ is greater than s, 
     // the container is reduced to its first s elements. 
     if (s < size_)

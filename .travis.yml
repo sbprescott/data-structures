@@ -1,0 +1,7 @@
+language: cpp
+
+compiler: clang
+
+script: 
+  - cd ${TRAVIS_BUILD_DIR}
+  - make && ./vector.out
