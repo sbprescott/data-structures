@@ -111,9 +111,3 @@ TEST_CASE("push_back()")
     REQUIRE(v2.capacity() == 2);
     REQUIRE(v2[1] == Vector({1,2}));
 }
-
-TEST_CASE("this test should fail")
-{
-    Vector v({1});
-    REQUIRE(v.size() == 0);
-}
