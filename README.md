@@ -1,11 +1,6 @@
 # C++ Data Structures
 
-A repository for lightweight implementations of various data structures in C++11 with emphasis on using standard library constructs whenever possible.  An effort has been made to abide by [Google C++ coding standards](https://google.github.io/styleguide/cppguide.html) whenever possible.
+A collection of C++ STL data structures.  Implementations target C++11.  An effort has been made to abide by [Google C++ coding standards](https://google.github.io/styleguide/cppguide.html).
 
 
-**Warning:** DO NOT use in production. For educational/testing purposes only.
-
-
-## Compilation
-
-Compile using GNU make 
+**Warning:** For educational/testing purposes only.
