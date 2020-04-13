@@ -19,10 +19,14 @@ class Vector {
         void push_back(int i);
         void resize(int s);
         int capacity();
+        int size() const;
 
         int& operator[](int i);
         int& operator[](int i) const;
-        int size() const;
+        int& at(int i);
+        int& front();
+        int& back();
+        
 
 
     private:

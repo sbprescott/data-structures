@@ -1,4 +1,4 @@
-CXX=g++
+CXX=clang++
 CPPFLAGS=-std=c++11
 RM=rm -f
 

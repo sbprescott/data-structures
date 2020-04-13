@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include "vector.h"
 
@@ -110,4 +111,35 @@ TEST_CASE("push_back()")
     REQUIRE(v2.size() == 2);
     REQUIRE(v2.capacity() == 2);
     REQUIRE(v2[1] == Vector({1,2}));
+}
+
+TEST_CASE("at()") {
+    Vector v({1});
+    REQUIRE(v.at(0) == 1);
+}
+
+TEST_CASE("front()") {
+    Vector v({1,2});
+    REQUIRE(v.front() == 1);
+}
+
+TEST_CASE("front() on empty vector") {
+    Vector v;
+    REQUIRE_THROWS_AS(v.front(), std::out_of_range);
+}
+
+TEST_CASE("back()") {
+    Vector v({1,2});
+    REQUIRE(v.back() == 2);
+}
+
+TEST_CASE("back() on empty vector") {
+    Vector v;
+    REQUIRE_THROWS_AS(v.back(), std::out_of_range);
+}
+
+TEST_CASE("at() out of range")
+{
+    Vector v({1});
+    REQUIRE_THROWS_AS(v.at(1), std::out_of_range);
 }

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 #include "vector.h"
 
@@ -129,6 +130,30 @@ int& Vector::operator[](int i)
 int& Vector::operator[](int i) const
 {
     return elem_[i];
+}
+
+int& Vector::at(int i) {
+    // bounds check:
+    if (i >= size_) {
+        throw std::out_of_range("Index is out of range.");
+    }
+
+    return elem_[i];
+}
+
+int& Vector::front() {
+    // check if empty
+    if (size_ == 0) {
+        throw std::out_of_range("front() cannot be called on an empty Vector.");
+    }
+    return elem_[0];
+}
+
+int& Vector::back() {
+    if (size_ == 0) {
+        throw std::out_of_range("back() cannot be called on an empty Vector.");
+    }
+    return elem_[size_ - 1];
 }
 
 int Vector::size() const
