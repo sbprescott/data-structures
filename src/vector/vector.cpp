@@ -16,7 +16,6 @@ Vector::Vector(int s)
     if (s < 0)
     {
         throw std::length_error{"Vector size must be positive."};
-        return;
     }
 
     size_ = s;
@@ -94,7 +93,11 @@ void Vector::push_back(int i)
 
 void Vector::resize(int s)
 {
-    // TODO: check negative resize request
+    if (s < 0)
+    {
+        throw std::length_error{"Vector size must be positive."};
+    }
+
     int* temp = new int[s];
     for (int i = 0; i != size_; i++)
     {
@@ -103,9 +106,6 @@ void Vector::resize(int s)
 
     delete[] elem_;
     elem_ = temp;
-    // why does this not work?
-    // elem_ = temp;
-    // delete[] temp;
 
     capacity_ = s;
 

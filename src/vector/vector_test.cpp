@@ -96,6 +96,11 @@ TEST_CASE("Resize")
     REQUIRE(v3.capacity() == 3);
 }
 
+TEST_CASE("resize with negative size") {
+    Vector v({1});
+    REQUIRE_THROWS_AS(v.resize(-1), std::length_error);
+}
+
 TEST_CASE("push_back()")
 {
     Vector v1;
