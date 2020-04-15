@@ -1,4 +1,3 @@
-#include <iostream>
 #include <stdexcept>
 #include <string>
 #include "vector.h"
@@ -6,15 +5,13 @@
 #define CATCH_CONFIG_MAIN
 #include "../catch.hpp"
 
-TEST_CASE( "Vector default constructor")
-{
+TEST_CASE( "Vector default constructor") {
     Vector v;
     REQUIRE(v.size() == 0);
     REQUIRE(v.capacity() == 0);
 }
 
-TEST_CASE("Vector constructor with size")
-{
+TEST_CASE("Vector constructor with size") {
     Vector v(2);
     v[0] = 1;
     v[1] = 2;
@@ -23,32 +20,17 @@ TEST_CASE("Vector constructor with size")
     REQUIRE(v.capacity() == 2);
 }
 
-TEST_CASE("Negative size")
-{
-    try
-    {
-        REQUIRE_THROWS_AS(Vector(-1), std::length_error);
-    }
-    catch (std::length_error)
-    {
-        std::cout << "length_error\n";
-    }
-    catch (std::bad_alloc)
-    {
-        std::cout << "bad_alloc\n";
-    }
-      
+TEST_CASE("Negative size") {
+    REQUIRE_THROWS_AS(Vector(-1), std::length_error);
 }
 
-TEST_CASE("Vector initializer list constructor")
-{
+TEST_CASE("Vector initializer list constructor") {
     Vector v({1,2});
     REQUIRE((v[0] == 1 && v[1] == 2));
     REQUIRE(v.size() == 2);   
 }
 
-TEST_CASE("Vector copy constructor")
-{
+TEST_CASE("Vector copy constructor") {
     Vector v1;
     Vector v2({1,2});
     Vector v3(v2);
@@ -56,15 +38,13 @@ TEST_CASE("Vector copy constructor")
     REQUIRE(v2 == v3);
 }
 
-TEST_CASE("Vector copy assignment")
-{
+TEST_CASE("Vector copy assignment") {
     Vector v1({1,2});
     Vector v2 = v1;
     REQUIRE(v1 == v2);
 }
 
-TEST_CASE("Vector move assignment/constructor")
-{
+TEST_CASE("Vector move assignment/constructor") {
     Vector v1({1,2});
     Vector v2({3,4});
     Vector v3 = v1; // v3 copied from v2
@@ -78,8 +58,7 @@ TEST_CASE("Vector move assignment/constructor")
     REQUIRE(v2.size() == 0);
 }
 
-TEST_CASE("Resize")
-{
+TEST_CASE("Resize") {
     Vector v1;
     Vector v2({1,2});
     Vector v3({1,2,3,4});
@@ -101,8 +80,7 @@ TEST_CASE("resize with negative size") {
     REQUIRE_THROWS_AS(v.resize(-1), std::length_error);
 }
 
-TEST_CASE("push_back()")
-{
+TEST_CASE("push_back()") {
     Vector v1;
     Vector v2({1});
 
@@ -143,8 +121,7 @@ TEST_CASE("back() on empty vector") {
     REQUIRE_THROWS_AS(v.back(), std::out_of_range);
 }
 
-TEST_CASE("at() out of range")
-{
+TEST_CASE("at() out of range") {
     Vector v({1});
     REQUIRE_THROWS_AS(v.at(1), std::out_of_range);
 }

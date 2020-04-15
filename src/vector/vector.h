@@ -36,7 +36,7 @@ class Vector {
 
 };
 
-bool operator==( const Vector& lhs, const Vector& rhs );
-bool operator!=( const Vector& lhs, const Vector& rhs );
+bool operator==(const Vector& lhs, const Vector& rhs);
+bool operator!=(const Vector& lhs, const Vector& rhs);
 
 #endif

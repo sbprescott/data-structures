@@ -1,7 +1,5 @@
 #include <algorithm>
-#include <iostream>
 #include <stdexcept>
-#include <vector>
 #include "vector.h"
 
 Vector::Vector()
@@ -11,8 +9,7 @@ Vector::Vector()
 {
 }
 
-Vector::Vector(int s)
-{
+Vector::Vector(int s) {
     if (s < 0)
     {
         throw std::length_error{"Vector size must be positive."};
@@ -58,8 +55,7 @@ Vector::Vector(Vector&& a)
     a.size_ = 0;
 }
 
-Vector& Vector::operator=(const Vector& a)
-{
+Vector& Vector::operator=(const Vector& a) {
     int* p = new int[a.size_];
     for (int i = 0; i != a.size_; i++)
     {
@@ -71,8 +67,7 @@ Vector& Vector::operator=(const Vector& a)
     return *this;
 }
 
-Vector& Vector::operator=(Vector&& a)
-{
+Vector& Vector::operator=(Vector&& a) {
     elem_ = a.elem_;
     size_ = a.size_;
     a.elem_ = nullptr;
@@ -80,8 +75,7 @@ Vector& Vector::operator=(Vector&& a)
     return *this;
 }
 
-void Vector::push_back(int i)
-{
+void Vector::push_back(int i) {
     if (size_ == capacity_)
     {
         resize(std::max(2.0, capacity_ * 1.5));
@@ -91,11 +85,10 @@ void Vector::push_back(int i)
     elem_[size_ - 1] = i;
 }
 
-void Vector::resize(int s)
-{
+void Vector::resize(int s) {
     if (s < 0)
     {
-        throw std::length_error{"Vector size must be positive."};
+        throw std::length_error{"Vector capacity must be positive."};
     }
 
     int* temp = new int[s];
@@ -117,18 +110,15 @@ void Vector::resize(int s)
     }
 }
 
-int Vector::capacity()
-{
+int Vector::capacity() {
     return capacity_;
 }
 
-int& Vector::operator[](int i)
-{
+int& Vector::operator[](int i) {
     return elem_[i];
 }
 
-int& Vector::operator[](int i) const
-{
+int& Vector::operator[](int i) const {
     return elem_[i];
 }
 
@@ -156,13 +146,11 @@ int& Vector::back() {
     return elem_[size_ - 1];
 }
 
-int Vector::size() const
-{
+int Vector::size() const {
     return size_;
 }
 
-bool operator==( const Vector& lhs, const Vector& rhs )
-{
+bool operator==(const Vector& lhs, const Vector& rhs) {
     bool ret = false;
 
     if (lhs.size() == rhs.size()) {
@@ -178,7 +166,6 @@ bool operator==( const Vector& lhs, const Vector& rhs )
     return ret;
 }
 
-bool operator!=( const Vector& lhs, const Vector& rhs )
-{
+bool operator!=(const Vector& lhs, const Vector& rhs) {
     return !(lhs == rhs);
 }
