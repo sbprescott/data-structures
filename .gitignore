@@ -4,6 +4,12 @@
 # vscode
 *.vscode
 
+# macOS
+*.DS_store
+
+# debug symbols
+*.dSYM
+
 # Prerequisites
 *.d
 

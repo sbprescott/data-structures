@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iostream>
 #include <stdexcept>
 #include "vector.h"
 
@@ -41,6 +42,7 @@ Vector::Vector(const Vector& a)
     :elem_{new int[a.size_]},
     size_{a.size_}
 {
+    std::cout << "copy\n";
     for (int i = 0; i != size_; i++)
     {
         elem_[i] = a.elem_[i];
@@ -51,11 +53,13 @@ Vector::Vector(Vector&& a)
     :elem_{a.elem_},
     size_{a.size_}
 {
+    std::cout << "move\n";
     a.elem_ = nullptr;
     a.size_ = 0;
 }
 
 Vector& Vector::operator=(const Vector& a) {
+    std::cout << "copy\n";
     int* p = new int[a.size_];
     for (int i = 0; i != a.size_; i++)
     {
@@ -68,6 +72,7 @@ Vector& Vector::operator=(const Vector& a) {
 }
 
 Vector& Vector::operator=(Vector&& a) {
+    std::cout << "move\n";
     elem_ = a.elem_;
     size_ = a.size_;
     a.elem_ = nullptr;
