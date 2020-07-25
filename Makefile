@@ -2,7 +2,7 @@ CXX=clang++
 CPPFLAGS=-std=c++11
 RM=rm -f
 
-SRCS=src/vector/vector.cpp src/vector/vector_test.cpp
+SRCS=src/vector/vector_test.cpp
 
 OBJS=$(subst .cpp,.o,$(SRCS))
 
